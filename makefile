@@ -17,7 +17,7 @@ standard: $(sources)
 	touch $@
 
 view: $(targets)
-	evince $^
+	xdg-open $^
 
 clean:
 	rm -f standard $(targets)
