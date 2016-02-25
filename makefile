@@ -3,12 +3,12 @@ targets = $(sources:.md=.pdf)
 
 all: $(targets)
 
-.PHONY: view all
+.PHONY: view all standard
 
 %.pdf: %.md
 	pandoc $< -o $@ --latex-engine=xelatex
 
-standard: $(sources)
+.standard: $(sources)
 	for FILE in $?; \
 	do \
 	    cp $$FILE $$FILE~; \
@@ -16,8 +16,10 @@ standard: $(sources)
 	done
 	touch $@
 
+standard: .standard
+
 view: $(targets)
 	xdg-open $^
 
 clean:
-	rm -f standard $(targets)
+	rm -f .standard $(targets)
