@@ -19,7 +19,10 @@ all: $(targets)
 standard: .standard
 
 view: $(targets)
-	xdg-open $^
+	for FILE in $^; \
+	do \
+		xdg-open $$FILE; \
+	done
 
 clean:
 	rm -f .standard $(targets)
