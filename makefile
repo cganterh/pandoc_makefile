@@ -4,8 +4,13 @@ targets = $(sources:.md=.pdf)
 .PHONY: all
 all: $(targets)
 
+ifeq ($(wildcard template.tex),template.tex)
+%.pdf: %.md template.tex
+	pandoc $< -o $@ --latex-engine=xelatex --template=template.tex
+else
 %.pdf: %.md
 	pandoc $< -o $@ --latex-engine=xelatex
+endif
 
 .standard: $(sources)
 	for FILE in $?; \
