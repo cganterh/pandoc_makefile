@@ -1,9 +1,8 @@
 sources = $(wildcard *.md)
 targets = $(sources:.md=.pdf)
 
+.PHONY: all
 all: $(targets)
-
-.PHONY: view all standard
 
 %.pdf: %.md
 	pandoc $< -o $@ --latex-engine=xelatex
@@ -16,8 +15,10 @@ all: $(targets)
 	done
 	touch $@
 
+.PHONY: standard
 standard: .standard
 
+.PHONY: view
 view: $(targets)
 	for FILE in $^; \
 	do \
