@@ -16,7 +16,7 @@ endif
 	for FILE in $?; \
 	do \
 	    cp $$FILE $$FILE~; \
-	    pandoc $$FILE -o $$FILE --columns=60 -s; \
+	    pandoc $$FILE -o $$FILE --columns=80 -s; \
 	done
 	touch $@
 
